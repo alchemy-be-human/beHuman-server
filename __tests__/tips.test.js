@@ -1,6 +1,7 @@
 const fs = require('fs');
 const request = require('supertest');
 const app = require('../lib/app');
+const Tip = require('../lib/models/Tip');
 const pool = require('../lib/utils/pool');
 
 describe('tests for Tip endpoints', () => {
@@ -8,7 +9,7 @@ describe('tests for Tip endpoints', () => {
 
   afterAll(() => pool.end());
 
-  it('POST: create a new tip', async() => {
+  it('creates a new tip via POST', async() => {
     const res = await request(app)
       .post('/api/v1/tips')
       .send({
@@ -21,7 +22,7 @@ describe('tests for Tip endpoints', () => {
     });
   });
 
-  it('GET: retrieve all tips', async() => {
+  it('returns all tips via GET', async() => {
     await request(app)
       .post('/api/v1/tips')
       .send({
@@ -54,27 +55,23 @@ describe('tests for Tip endpoints', () => {
     results.forEach(result => expect(res.body).toContainEqual(result));
   });
 
-  it('PUT: udpate one tip', async() => {
-    const tip = await request(app)
-      .post('/')
-      .send({
-        id: expect.any(String),
-        tip: 'Walk around the room.'
-      });
+  it('udpates a tip via PUT', async() => {
+    const tip = await Tip.insert(
+      { id: expect.any(String), tip: 'Walk around the room.'}
+    );
 
     const res = await request(app)
-      .put('/')
-      .send({
-        id: tip.id,
-        tip: 'Walk around the block.'
-      });
+      .put(`/api/v1/tips/${tip.id}`)
+      .send(
+        { id: tip.id, tip: 'Walk around the block.' });
 
-    const result = {
-      id: tip.id,
-      tip: 'Walk around the block.'
-    };
 
-    expect(res.body).toEqual(result);
+      console.log('**********************************');
+      console.log(res.body);
+
+    expect(res.body).toEqual(
+      { id: tip.id, tip: 'Walk around the block.' }
+    );
   });
 
 
