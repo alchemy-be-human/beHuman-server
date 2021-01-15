@@ -54,6 +54,29 @@ describe('tests for Tip endpoints', () => {
     results.forEach(result => expect(res.body).toContainEqual(result));
   });
 
+  it('PUT: udpate one tip', async() => {
+    const tip = await request(app)
+      .post('/')
+      .send({
+        id: expect.any(String),
+        tip: 'Walk around the room.'
+      });
+
+    const res = await request(app)
+      .put('/')
+      .send({
+        id: tip.id,
+        tip: 'Walk around the block.'
+      });
+
+    const result = {
+      id: tip.id,
+      tip: 'Walk around the block.'
+    };
+
+    expect(res.body).toEqual(result);
+  });
+
 
 
 });
