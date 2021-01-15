@@ -25,7 +25,7 @@ describe('tests for Tip endpoints', () => {
     await request(app)
       .post('/api/v1/tips')
       .send({
-        tip: 'Drink Water.'
+        tip: 'Drink water.'
       });
 
     await request(app)
@@ -43,15 +43,15 @@ describe('tests for Tip endpoints', () => {
     const res = await request(app)
       .get('/api/v1/tips');
 
-    const expected = [
+    const results = [
       { id: expect.any(String), tip: 'Drink water.' },
       { id: expect.any(String), tip: 'Take 5 deep breaths.' },
       { id: expect.any(String), tip: 'Look out a window.' }
     ];
 
-    expect(res.body).toContainEqual(expected);
-    expect(res.body.length).toEqual(expected.length);
-
+    expect(res.body).toEqual(results);
+    expect(res.body.length).toEqual(results.length);
+    results.forEach(result => expect(res.body).toContainEqual(result));
   });
 
 
