@@ -8,11 +8,6 @@ describe('tests for Tip endpoints', () => {
 
   afterAll(() => pool.end());
 
-
-  it('test description', () => {
-    expect(true).toEqual(true);
-  });
-
   it('POST: create a new tip', async() => {
     const res = await request(app)
       .post('/api/v1/tips')
