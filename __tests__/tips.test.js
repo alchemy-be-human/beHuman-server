@@ -16,10 +16,9 @@ describe('tests for Tip endpoints', () => {
         tip: 'Drink water.'
       });
 
-    expect(res.body).toEqual({
-      id: expect.any(String),
-      tip: 'Drink water.'
-    });
+    expect(res.body).toEqual(
+      { id: expect.any(String), tip: 'Drink water.' }
+    );
   });
 
   it('returns all tips via GET', async() => {
@@ -57,23 +56,23 @@ describe('tests for Tip endpoints', () => {
 
   it('udpates a tip via PUT', async() => {
     const tip = await Tip.insert(
-      { id: expect.any(String), tip: 'Walk around the room.'}
+      { id: expect.any(String), tip: 'Walk around the room.' }
     );
 
     const res = await request(app)
       .put(`/api/v1/tips/${tip.id}`)
       .send(
-        { id: tip.id, tip: 'Walk around the block.' });
+        { id: tip.id, tip: 'Walk around the block.' }
+      );
 
     expect(res.body).toEqual(
       { id: tip.id, tip: 'Walk around the block.' }
     );
   });
 
-
-  it('deeltes a tip via DELETE', async() => {
+  it('deletes a tip via DELETE', async() => {
     const tip = await Tip.insert(
-      { id: expect.any(String), tip: 'Walk around the room.'}
+      { id: expect.any(String), tip: 'Walk around the room.' }
     );
 
     const res = await request(app)
@@ -81,11 +80,6 @@ describe('tests for Tip endpoints', () => {
       .send(
         { id: tip.id, tip: 'Walk around the room.' });
 
-    expect(res.body).toEqual(
-      { id: tip.id, tip: 'Walk around the room.' }
-    );
+    expect(res.body).toEqual(tip);
   });
-
-
-
 });
