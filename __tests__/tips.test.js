@@ -56,7 +56,7 @@ describe('tests for Tip endpoints', () => {
 
   it('udpates a tip via PUT', async() => {
     const tip = await Tip.insert(
-      { id: expect.any(String), tip: 'Walk around the room.' }
+      { tip: 'Walk around the room.' }
     );
 
     const res = await request(app)
@@ -72,13 +72,11 @@ describe('tests for Tip endpoints', () => {
 
   it('deletes a tip via DELETE', async() => {
     const tip = await Tip.insert(
-      { id: expect.any(String), tip: 'Walk around the room.' }
+      { tip: 'Walk around the room.' }
     );
 
     const res = await request(app)
-      .delete(`/api/v1/tips/${tip.id}`)
-      .send(
-        { id: tip.id, tip: 'Walk around the room.' });
+      .delete(`/api/v1/tips/${tip.id}`);
 
     expect(res.body).toEqual(tip);
   });
