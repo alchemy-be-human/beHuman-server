@@ -65,12 +65,24 @@ describe('tests for Tip endpoints', () => {
       .send(
         { id: tip.id, tip: 'Walk around the block.' });
 
-
-      console.log('**********************************');
-      console.log(res.body);
-
     expect(res.body).toEqual(
       { id: tip.id, tip: 'Walk around the block.' }
+    );
+  });
+
+
+  it('deeltes a tip via DELETE', async() => {
+    const tip = await Tip.insert(
+      { id: expect.any(String), tip: 'Walk around the room.'}
+    );
+
+    const res = await request(app)
+      .delete(`/api/v1/tips/${tip.id}`)
+      .send(
+        { id: tip.id, tip: 'Walk around the room.' });
+
+    expect(res.body).toEqual(
+      { id: tip.id, tip: 'Walk around the room.' }
     );
   });
 
