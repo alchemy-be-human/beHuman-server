@@ -21,6 +21,39 @@ describe('tests for Tip endpoints', () => {
     });
   });
 
+  it('GET: retrieve all tips', async() => {
+    await request(app)
+      .post('/api/v1/tips')
+      .send({
+        tip: 'Drink Water.'
+      });
+
+    await request(app)
+      .post('/api/v1/tips')
+      .send({
+        tip: 'Take 5 deep breaths.'
+      });
+
+    await request(app)
+      .post('/api/v1/tips')
+      .send({
+        tip: 'Look out a window.'
+      });
+
+    const res = await request(app)
+      .get('/api/v1/tips');
+
+    const expected = [
+      { id: expect.any(String), tip: 'Drink water.' },
+      { id: expect.any(String), tip: 'Take 5 deep breaths.' },
+      { id: expect.any(String), tip: 'Look out a window.' }
+    ];
+
+    expect(res.body).toContainEqual(expected);
+    expect(res.body.length).toEqual(expected.length);
+
+  });
+
 
 
 });
