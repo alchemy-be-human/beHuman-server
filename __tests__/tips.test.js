@@ -22,23 +22,18 @@ describe('tests for Tip endpoints', () => {
   });
 
   it('returns all tips via GET', async() => {
-    await request(app)
-      .post('/api/v1/tips')
-      .send({
+
+    const tips = await Promise.all([
+      {
         tip: 'Drink water.'
-      });
-
-    await request(app)
-      .post('/api/v1/tips')
-      .send({
+      },
+      {
         tip: 'Take 5 deep breaths.'
-      });
-
-    await request(app)
-      .post('/api/v1/tips')
-      .send({
+      },
+      {
         tip: 'Look out a window.'
-      });
+      }
+    ].map(tip => Tip.insert(tip)));
 
     const res = await request(app)
       .get('/api/v1/tips');
@@ -49,7 +44,6 @@ describe('tests for Tip endpoints', () => {
       { id: expect.any(String), tip: 'Look out a window.' }
     ];
 
-    expect(res.body).toEqual(results);
     expect(res.body.length).toEqual(results.length);
     results.forEach(result => expect(res.body).toContainEqual(result));
   });
@@ -62,7 +56,7 @@ describe('tests for Tip endpoints', () => {
     const res = await request(app)
       .put(`/api/v1/tips/${tip.id}`)
       .send(
-        { id: tip.id, tip: 'Walk around the block.' }
+        { tip: 'Walk around the block.' }
       );
 
     expect(res.body).toEqual(
