@@ -2,6 +2,7 @@ const fs = require('fs');
 const pool = require('../lib/utils/pool');
 const request = require('supertest');
 const app = require('../lib/app');
+const UserService = require('../lib/services/UserServices');
 
 describe('. routes', () => {
   beforeEach(() => {
@@ -16,7 +17,7 @@ describe('. routes', () => {
     //email, password
     return request(app)
       .post('/api/v1/auth/signup')
-      .send({ email: 'admin@beHuman.com', password:'password' })
+      .send({ email: 'test@test.com', password:'password' })
       .then(res => {
         expect(res.body).toEqual({
           id: expect.any(String),
@@ -25,7 +26,24 @@ describe('. routes', () => {
       });
   });
 
+  it('allows a user to login via POST', async() => {
+    const user = await UserService.create({
+      email: 'test@test.com',
+      password: 'password'
+    });
 
+    const res = await request(app)
+      .post('/api/v1/auth/login')
+      .send({
+        email: 'test@test.com',
+        password: 'password'
+      });
+
+    expect(res.body).toEqual({
+      id: user.id,
+      email: 'test@test.com',
+    });
+  });
 
 
 
