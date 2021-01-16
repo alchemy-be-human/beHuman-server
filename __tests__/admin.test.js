@@ -22,7 +22,6 @@ describe('. routes', () => {
         expect(res.body).toEqual({
           id: expect.any(String),
           email: 'admin@beHuman.com',
-          passwordHash: expect.any(String)
         });
       });
   });
