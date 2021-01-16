@@ -13,7 +13,7 @@ describe('. routes', () => {
     return pool.end();
   });
 
-  it ('it seeds an Admin account via POST', () => {
+  it ('it allows user to signup via POST', () => {
     //email, password
     return request(app)
       .post('/api/v1/auth/signup')
@@ -22,6 +22,7 @@ describe('. routes', () => {
         expect(res.body).toEqual({
           id: expect.any(String),
           email: 'admin@beHuman.com',
+          passwordHash: expect.any(String)
         });
       });
   });
