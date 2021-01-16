@@ -21,7 +21,7 @@ describe('. routes', () => {
       .then(res => {
         expect(res.body).toEqual({
           id: expect.any(String),
-          email: 'admin@beHuman.com',
+          email: 'test@test.com',
         });
       });
   });
@@ -45,7 +45,27 @@ describe('. routes', () => {
     });
   });
 
+  it('verifies a user is logged in', async() => {
+    const agent = request.agent(app);
+    const user = await UserService.create({
+      email: 'test@test.com',
+      password: 'password' 
+    });
 
+    await agent
+      .post('/api/v1/auth/login')
+      .send({
+        email: 'test@test.com',
+        password: 'password' 
+      });
 
+    const res = await agent
+      .get('/api/v1/auth/verify');
+    
+    expect(res.body).toEqual({
+      id: user.id,
+      email: 'test@test.com', 
+    });
+  });
 
 });
