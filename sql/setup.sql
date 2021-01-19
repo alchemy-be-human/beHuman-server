@@ -19,4 +19,7 @@ CREATE TABLE tips (
 );
 
 INSERT INTO users (email, password_hash) VALUES
-('admin@behuman.com', '$2a$04$14f5XjhjOn4OeFlClKgvxe0RMSasRgrYePJtHf4WnKvMi53UZUvaW');
+('admin@behuman.com', '$2y$04$F8I5POR7CFJR1HgpKeuvs.jYH6Ge60paGorKoQxvlhzWjoZoZGkBi');
+
+
+
