@@ -75,6 +75,7 @@ describe('tests for Tip endpoints', () => {
     expect(res.body).toEqual(tip);
   });
 
+
   it('returns a random tip via GET', async() => {
     const tips = await Promise.all([
       {
@@ -95,4 +96,5 @@ describe('tests for Tip endpoints', () => {
       'id':expect.any(String), 'tip':expect.any(String) }
     );
   });
+
 });
