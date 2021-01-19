@@ -53,7 +53,6 @@ describe('Link endpoint', () => {
     );
   });
 
-
   it('returns a random link via GET', async() => {
     const res = await request(app)
       .get('/api/v1/links/random');
