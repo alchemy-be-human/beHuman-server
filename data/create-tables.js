@@ -1,5 +1,4 @@
 const pool = require('../lib/utils/pool');
-// const fs = require('fs');
 
 run();
 
@@ -20,9 +19,6 @@ async function run() {
           tip TEXT NOT NULL
         );
         `);
-
-    // await pool.query(fs.readFileSync('./sql/setup.sql', 'utf-8'));
-
   }
   catch(err) {
     console.log(err);
