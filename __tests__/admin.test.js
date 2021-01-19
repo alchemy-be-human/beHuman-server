@@ -63,28 +63,30 @@ describe('. routes', () => {
     });
   });
 
-  it('updates a admin password', async() => {
+  it('update admin password by email via put route', async() => {
     const agent = request.agent(app);
     const user = await UserService.create({
       email: 'test@test.com',
-      password: expect.any(String)
+      password: 'password'
     });
-
-    const newPassword = await UserService
-      .update({
-        password: expect.any(String)
-      });
     
-    const res = await agent
-      .put(`/api/v1/invite/${newPassword.id}`)
+   const login = await agent
+      .post('/api/v1/auth/login')
       .send({
-        password: expect.any(String)
+        email: 'test@test.com',
+        password: 'password'
+      });
+console.log(login.body);
+    const res = await agent
+      .put('/api/v1/auth/updatePassword')
+      .send({
+        password: 'newPassword'
       });
     
     expect(res.body).toEqual({
-      userId: user.id,
-      email: 'test@test.com',
-      password: expect.any(String)
+      id: user.id,
+      email: 'test@test.com'
+      // password: expect.any(String)
     });
   });
 
