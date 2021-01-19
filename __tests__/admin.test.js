@@ -13,18 +13,18 @@ describe('. routes', () => {
     return pool.end();
   });
 
-  it ('it allows user to signup via POST', () => {
-    //email, password
-    return request(app)
-      .post('/api/v1/auth/signup')
-      .send({ email: 'test@test.com', password:'password' })
-      .then(res => {
-        expect(res.body).toEqual({
-          id: expect.any(String),
-          email: 'test@test.com',
-        });
-      });
-  });
+  // it ('it allows user to signup via POST', () => {
+  //   //email, password
+  //   return request(app)
+  //     .post('/api/v1/auth/signup')
+  //     .send({ email: 'test@test.com', password:'password' })
+  //     .then(res => {
+  //       expect(res.body).toEqual({
+  //         id: expect.any(String),
+  //         email: 'test@test.com',
+  //       });
+  //     });
+  // });
 
   it('allows a user to login via POST', async() => {
     const user = await UserService.create({
