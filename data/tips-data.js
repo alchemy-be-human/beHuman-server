@@ -12,7 +12,7 @@ module.exports = [
     tip: 'Let\'s take a break. Step away from your computer (and any other screens) for 5-10 minutes.'
   },
   {
-    tip: 'Time for a break. Do nothing for the next two minutes. (See http://www.donothingfor2minutes.com/ for guidance) '
+    tip: 'Time for a break. Do nothing for the next two minutes, uninterrupted.'
   },
   {
     tip: 'You\'ve been working hard! Take a lap around your office or home.'
