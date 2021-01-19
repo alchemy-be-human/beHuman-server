@@ -1,5 +1,5 @@
 const pool = require('../lib/utils/pool');
-const tips = require('./tips');
+const tipsData = require('./tips-data');
 
 run();
 
@@ -9,7 +9,7 @@ async function run() {
     await pool.connect();
 
     await Promise.all(
-      tips.map(tip => {
+      tipsData.map(tip => {
         return pool.query(`
                     INSERT INTO tips (tip)
                     VALUES ($1)`,

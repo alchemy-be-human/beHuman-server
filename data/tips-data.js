@@ -28,5 +28,5 @@ module.exports = [
   },
   {
     tip: 'Consider decluttering your desk. It can help create a more relaxed environment, plus, you look busy doing it!'
-  },
-]
+  }
+];
