@@ -68,4 +68,29 @@ describe('. routes', () => {
     });
   });
 
+  it('updates a admin password', async() => {
+    const agent = request.agent(app);
+    const user = await UserService.create({
+      email: 'test@test.com',
+      password: expect.any(String)
+    });
+
+    const newPassword = await UserService
+      .update({
+        password: expect.any(String)
+      });
+    
+    const res = await agent
+      .put(`/api/v1/invite/${newPassword.id}`)
+      .send({
+        password: expect.any(String)
+      });
+    
+    expect(res.body).toEqual({
+      userId: user.id,
+      email: 'test@test.com',
+      password: expect.any(String)
+    });
+  });
+
 });
