@@ -1,5 +1,5 @@
 const pool = require('../lib/utils/pool');
-const urlsData = require('./urls-data');
+const linksData = require('./links-data');
 
 run();
 
@@ -9,9 +9,9 @@ async function run() {
     await pool.connect();
 
     await Promise.all(
-      urlsData.map(url => {
+      linksData.map(url => {
         return pool.query(`
-                    INSERT INTO urls (url)
+                    INSERT INTO links (url)
                     VALUES ($1)`,
         [url.url]);
       })
