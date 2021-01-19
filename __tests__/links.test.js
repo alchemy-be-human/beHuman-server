@@ -52,4 +52,13 @@ describe('Link endpoint', () => {
       { 'id':'2', 'url':'https://www.youtube.com/watch?v=Re-h_rtttIE' }
     );
   });
+
+  it('returns a random link via GET', async() => {
+    const res = await request(app)
+      .get('/api/v1/links/random');
+
+    expect(res.body).toEqual({
+      'id':expect.any(String), 'url':expect.any(String) }
+    );
+  });
 });
