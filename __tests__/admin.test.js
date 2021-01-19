@@ -13,19 +13,6 @@ describe('. routes', () => {
     return pool.end();
   });
 
-  // it ('it allows user to signup via POST', () => {
-  //   //email, password
-  //   return request(app)
-  //     .post('/api/v1/auth/signup')
-  //     .send({ email: 'test@test.com', password:'password' })
-  //     .then(res => {
-  //       expect(res.body).toEqual({
-  //         id: expect.any(String),
-  //         email: 'test@test.com',
-  //       });
-  //     });
-  // });
-
   it('allows a the main Admin to login via POST', async() => {
     const res = await request(app)
       .post('/api/v1/auth/login')
@@ -70,13 +57,13 @@ describe('. routes', () => {
       password: 'password'
     });
     
-   const login = await agent
+    await agent
       .post('/api/v1/auth/login')
       .send({
         email: 'test@test.com',
         password: 'password'
       });
-console.log(login.body);
+
     const res = await agent
       .put('/api/v1/auth/updatePassword')
       .send({
@@ -86,7 +73,6 @@ console.log(login.body);
     expect(res.body).toEqual({
       id: user.id,
       email: 'test@test.com'
-      // password: expect.any(String)
     });
   });
 
