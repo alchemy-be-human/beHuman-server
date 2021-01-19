@@ -17,3 +17,6 @@ CREATE TABLE tips (
   id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
   tip TEXT NOT NULL
 );
+
+INSERT INTO users (email, password_hash) VALUES
+('admin@behuman.com', '$2a$04$14f5XjhjOn4OeFlClKgvxe0RMSasRgrYePJtHf4WnKvMi53UZUvaW');
