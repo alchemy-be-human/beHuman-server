@@ -1,0 +1,49 @@
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+section {
+    margin: 20px;
+    padding: 10px;
+    text-align: center;
+}
+
+button {
+    width: 75px;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 25px;
+}
+
+#invite-section {
+    border: solid 2px black;
+    text-align: center;
+}
+
+#display-section {
+    display: flex;
+}
+
+.list-container {
+    border: solid 2px black;
+    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.display-case {
+    border: solid 2px black;
+    padding: 10px;
+    margin: 15px;
+}
+
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    border: solid 1px black;
+    margin: 15px;
+}
