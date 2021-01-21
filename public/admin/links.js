@@ -3,6 +3,18 @@ const request = superagent;
 const linkList = document.querySelector('#link-list');
 const addLink = document.querySelector('#add-link-form');
 
+// const response = 
+
+request
+  .get('/api/v1/auth/verify')
+  .then(response => {
+    console.log(response.body);
+    if(response.statusCode === 401) {
+      window.location = '../index.html';
+    }
+  });
+
+
 //Insert new link into database
 addLink.addEventListener('submit', async(e) => {
   e.preventDefault();
