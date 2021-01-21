@@ -8,9 +8,13 @@ const addLink = document.querySelector('#add-link-form');
 addLink.addEventListener('submit', async(e) => {
   e.preventDefault();
   const inputLink = document.getElementById('link-input').value;
+
+  if(!inputLink) return;
   
   await request.post('/api/v1/links')
     .send({ url: inputLink });
+
+  location.reload();
 });
 
 //Fetch and display Links with the ability to Delete them
@@ -36,10 +40,16 @@ getLinks()
       linkContainer.append(deleteButton);
       linkList.append(linkContainer);
 
-//Delete link from database
+      //Delete link from database
 
       deleteButton.addEventListener('click', async() => {
         const linkIdToDelete = oneLink.id;
-        await request.delete(`/api/v1/links/${linkIdToDelete}`);});
+        const alert = prompt('Type \'DELETE\' and click \'OK\' to continue with deleting this link.');
+
+        if(alert === 'DELETE'){
+          await request.delete(`/api/v1/links/${linkIdToDelete}`);
+          location.reload();
+        }
+      });
     });
   });
