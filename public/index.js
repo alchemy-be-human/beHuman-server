@@ -19,6 +19,7 @@ logInForm.addEventListener('submit', async(e) => {
   try {
     const response = await request
       .post('/api/v1/auth/login')
+      .withCredentials()
       .send(user);
     
     if(response.statusCode === 200){
