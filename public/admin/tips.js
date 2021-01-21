@@ -4,11 +4,17 @@ const request = superagent;
 const tipList = document.querySelector('#tip-list');
 const addTip = document.querySelector('#add-tip-form');
 
-addTip.addEventListener('submit', (e) => {
+addTip.addEventListener('submit', async(e) => {
   e.preventDefault();
   console.log('Add Tip button was clicked');
-    
-  // Add fetch call to POST/insert endpoint of tips.js
+  
+  const myForm = new FormData(addTip);
+  const body = myForm.get('add-tip-input');
+  const res = await request.post('/api/v1/tips')
+    .set('Content-Type', 'application/json')
+    .send({ tip:body })
+    .withCredentials();
+    location.reload();
 });
 
 //Fetch and display Quick Tips with the ability to Update and Delete them
@@ -56,10 +62,17 @@ getTips()
 
 
       //Event listeners to delete and update tips
-      deleteButton.addEventListener('click', () => {
+      deleteButton.addEventListener('click', (e) => {
         console.log(`Delete button clicked for Tip #${oneTip.id}`);
 
-        // Make fetch call to DELETE endpoint of tips.js
+        console.log(e.target);
+       
+
+        // const res = await request.post('/api/v1/tips')
+        //   .set('Content-Type', 'application/json')
+    
+        //   .withCredentials();
+        //   location.reload();
       });
     
       editButton.addEventListener('click', () => {
