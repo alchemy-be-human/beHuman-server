@@ -21,6 +21,4 @@ inviteForm.addEventListener('submit', async(e) => {
     .send(invite)
     .then(console.log('Made it here.'));
 
-  
-
 });
