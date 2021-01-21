@@ -12,9 +12,8 @@ addTip.addEventListener('submit', async(e) => {
   const body = myForm.get('add-tip-input');
   const res = await request.post('/api/v1/tips')
     .set('Content-Type', 'application/json')
-    .send({ tip:body })
-    .withCredentials();
-    location.reload();
+    .send({ tip:body });
+  location.reload();
 });
 
 //Fetch and display Quick Tips with the ability to Update and Delete them
@@ -31,7 +30,6 @@ getTips()
 
       const displayCase = document.createElement('div');
       displayCase.classList.add('display-case');
-
       
       const tipContainer = document.createElement('div');
       tipContainer.classList.add('container');
@@ -44,41 +42,48 @@ getTips()
 
       tipContainer.append(displayTip, deleteButton);
 
-
       const editContainer = document.createElement('div');
       editContainer.classList.add('container');
 
       const editTip = document.createElement('input');
       editTip.value = oneTip.tip;
-
+      editTip.classList.add('tipEdit');
       const editButton = document.createElement('button');
+
       editButton.textContent = 'Edit' + ' ' + oneTip.id;
     
       editContainer.append(editTip, editButton);
-
     
       displayCase.append(tipContainer, editContainer);
       tipList.append(displayCase);
 
-
       //Event listeners to delete and update tips
-      deleteButton.addEventListener('click', (e) => {
+      deleteButton.addEventListener('click', async(e) => {
         console.log(`Delete button clicked for Tip #${oneTip.id}`);
+      
+        const tipIdToDelete = oneTip.id;
+        const alert = prompt('Type \'DELETE\' and click \'OK\' to continue with deleting this tip.');
+        if(alert === 'DELETE'){
+          await request.delete(`/api/v1/tips/${tipIdToDelete}`);
 
-        console.log(e.target);
-       
-
-        // const res = await request.post('/api/v1/tips')
-        //   .set('Content-Type', 'application/json')
-    
-        //   .withCredentials();
-        //   location.reload();
+          location.reload();
+        }
       });
     
-      editButton.addEventListener('click', () => {
+      editButton.addEventListener('click', async(e) => {
+        e.preventDefault();
         console.log(`Edit button clicked for Tip #${oneTip.id}`);
 
         // Make fetch call to PUT endpoint of tips.js
+        const myForm = new FormData(editButton);
+        console.log('myForm');
+        const body = new myForm.get('tipEdit');
+        console.log(body);
+        const res = await request.put(`/api/v1/tips/${oneTip.id}`)
+          .set('Content-Type', 'application/json');
+          // .send({ tip:body });
+        location.reload();
+        
       });
     });
   });

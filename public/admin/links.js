@@ -1,17 +1,19 @@
 const request = superagent;
 
-// LINKS section
 const linkList = document.querySelector('#link-list');
 const addLink = document.querySelector('#add-link-form');
 
-addLink.addEventListener('submit', (e) => {
+//Insert new link into database
+addLink.addEventListener('submit', async(e) => {
   e.preventDefault();
-  console.log('Add Link button was clicked');
-
-  // Add fetch call to POST/insert endpoint of links.js
+  const inputLink = document.getElementById('link-input').value;
+  if(!inputLink) return;
+  await request.post('/api/v1/links')
+    .send({ url: inputLink });
+  location.reload();
 });
 
-//Fetch and display Quick Tips with the ability to Update and Delete them
+//Fetch and display Links with the ability to Delete them
 const getLinks = async() => {
   const response = await request
     .get('/api/v1/links');
@@ -23,7 +25,6 @@ getLinks()
   .then(allLinks => {
     allLinks.map(oneLink => {
 
-    
       const linkContainer = document.createElement('div');
       linkContainer.classList.add('display-case');
       linkContainer.textContent = oneLink.url;
@@ -34,13 +35,15 @@ getLinks()
       linkContainer.append(deleteButton);
       linkList.append(linkContainer);
 
-      //Event listener to delete links
-      deleteButton.addEventListener('click', () => {
-        console.log(`Delete button clicked for Link #${oneLink.id}`);
+      //Delete link from database
+      deleteButton.addEventListener('click', async() => {
+        const linkIdToDelete = oneLink.id;
+        const alert = prompt('Type \'DELETE\' and click \'OK\' to continue with deleting this link.');
 
-        // Make fetchmcall to DELETE endpoint of links.js
+        if(alert === 'DELETE'){
+          await request.delete(`/api/v1/links/${linkIdToDelete}`);
+          location.reload();
+        }
       });
     });
-
-
   });
