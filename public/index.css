@@ -26,3 +26,7 @@ button {
     align-self: center;
     width: fit-content;
 }
+
+#error-span {
+    color: darkred;
+}
