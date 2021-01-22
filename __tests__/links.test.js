@@ -20,6 +20,7 @@ describe('Link endpoint', () => {
       .send({
         url: 'http://www.youtube.com'
       });
+      
     expect(res.body).toEqual({
       id: `${res.body.id}`,
       url: 'http://www.youtube.com'
@@ -29,6 +30,7 @@ describe('Link endpoint', () => {
   it('finds a link by id via GET', async() => {
     const res = await request(app)
       .get('/api/v1/links/2');
+
     expect(res.body).toEqual({
       id: '2',
       url: 'https://www.youtube.com/watch?v=Re-h_rtttIE'
