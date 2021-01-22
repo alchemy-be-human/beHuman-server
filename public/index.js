@@ -1,7 +1,4 @@
 const request = superagent;
-// const whatever = require('dontenv').config();
-// const result = dotenv.config();
-// console.log(result);
 
 const logInForm = document.querySelector('form');
 const errorSpan = document.querySelector('#error-span');
@@ -30,9 +27,8 @@ logInForm.addEventListener('submit', async(e) => {
         window.location.href = './admin/';
       }
     }
-
+    
   } catch{
     errorSpan.textContent = 'Invalid Email or Password';
   }
-
 });
