@@ -4,10 +4,13 @@ const app = require('../lib/app');
 const Tip = require('../lib/models/Tip');
 const pool = require('../lib/utils/pool');
 
-describe('tests for Tip endpoints', () => {
-  beforeEach(() => pool.query(fs.readFileSync('./sql/setup.sql', 'utf-8')));
-
-  afterAll(() => pool.end());
+describe('Tip endpoints', () => {
+  beforeEach(() => {
+    return pool.query(fs.readFileSync('./sql/setup.sql', 'utf-8'));
+  });
+  afterAll(() => {
+    return pool.end();
+  });
 
   it('creates a new tip via POST', async() => {
     const res = await request(app)
@@ -22,8 +25,7 @@ describe('tests for Tip endpoints', () => {
   });
 
   it('returns all tips via GET', async() => {
-
-    const tips = await Promise.all([
+    await Promise.all([
       {
         tip: 'Drink water.'
       },
@@ -48,7 +50,7 @@ describe('tests for Tip endpoints', () => {
     results.forEach(result => expect(res.body).toContainEqual(result));
   });
 
-  it('udpates a tip via PUT', async() => {
+  it('updates a tip via PUT', async() => {
     const tip = await Tip.insert(
       { tip: 'Walk around the room.' }
     );
@@ -77,7 +79,7 @@ describe('tests for Tip endpoints', () => {
 
 
   it('returns a random tip via GET', async() => {
-    const tips = await Promise.all([
+    await Promise.all([
       {
         tip: 'Drink water.'
       },
@@ -96,5 +98,4 @@ describe('tests for Tip endpoints', () => {
       'id':expect.any(String), 'tip':expect.any(String) }
     );
   });
-
 });

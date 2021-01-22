@@ -4,11 +4,10 @@ const request = require('supertest');
 const app = require('../lib/app');
 const UserService = require('../lib/services/UserServices');
 
-describe('. routes', () => {
+describe('auth endpoints', () => {
   beforeEach(() => {
     return pool.query(fs.readFileSync('./sql/setup.sql', 'utf-8'));
   });
-
   afterAll(() => {
     return pool.end();
   });
@@ -27,7 +26,7 @@ describe('. routes', () => {
     });
   });
 
-  it('verifies a user is logged in', async() => {
+  it('verifies a user is logged in via GET', async() => {
     const agent = request.agent(app);
     const user = await UserService.create({
       email: 'test@test.com',
@@ -50,7 +49,7 @@ describe('. routes', () => {
     });
   });
 
-  it('update admin password by email via put route', async() => {
+  it('update admin password by email via PUT', async() => {
     const agent = request.agent(app);
     const user = await UserService.create({
       email: 'test@test.com',
@@ -75,5 +74,4 @@ describe('. routes', () => {
       email: 'test@test.com'
     });
   });
-
 });

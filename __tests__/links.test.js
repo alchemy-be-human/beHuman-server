@@ -3,7 +3,7 @@ const pool = require('../lib/utils/pool');
 const request = require('supertest');
 const app = require('../lib/app');
 
-describe('Link endpoint', () => {
+describe('Link endpoints', () => {
   beforeEach(() => {
     return pool.query(fs.readFileSync('./sql/setup.sql', 'utf-8'));
   });
@@ -20,7 +20,7 @@ describe('Link endpoint', () => {
       .send({
         url: 'http://www.youtube.com'
       });
-      
+
     expect(res.body).toEqual({
       id: `${res.body.id}`,
       url: 'http://www.youtube.com'
@@ -40,6 +40,7 @@ describe('Link endpoint', () => {
   it('returns all links via GET', async() => {
     const res = await request(app)
       .get('/api/v1/links');
+
     expect(res.body).toHaveLength(3);
     expect(res.body).toEqual([
       { 'id':'1', 'url':'https://www.youtube.com/watch?v=wnlcuZ0mJSU' }, 
@@ -47,9 +48,10 @@ describe('Link endpoint', () => {
       { 'id':'3', 'url':'https://www.youtube.com/watch?v=SuScgzVJp-s' }]);
   });
 
-  it('delets a link via DELETE', async() => {
+  it('deletes a link via DELETE', async() => {
     const res = await request(app)
       .delete('/api/v1/links/2');
+
     expect(res.body).toEqual(
       { 'id':'2', 'url':'https://www.youtube.com/watch?v=Re-h_rtttIE' }
     );
@@ -63,5 +65,4 @@ describe('Link endpoint', () => {
       'id':expect.any(String), 'url':expect.any(String) }
     );
   });
-
 });
