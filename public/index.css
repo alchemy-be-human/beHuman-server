@@ -2,6 +2,15 @@
     box-sizing: border-box;
     margin: 5px;
 }
+img {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+header {
+    font-size: larger;
+    margin: 10px;
+}
 
 img {
     margin-top: 20px;
