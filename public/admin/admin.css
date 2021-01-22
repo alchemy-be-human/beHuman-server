@@ -38,6 +38,7 @@ button {
     margin: 5px;
     padding: 5px;
     border-radius: 25px;
+    outline: none;
 }
 
 #invite-section {

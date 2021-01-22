@@ -1,6 +1,7 @@
 const request = superagent;
 
 const inviteForm = document.querySelector('#invite-form');
+const inviteInput = document.querySelector('#invite-input');
 
 inviteForm.addEventListener('submit', async(e) => {
   e.preventDefault();
@@ -10,6 +11,8 @@ inviteForm.addEventListener('submit', async(e) => {
   const invite = {
     email: data.get('email-input'),
   };
+
+  inviteInput.value = '';
 
   await request
     .post('/api/v1/auth/invite')
