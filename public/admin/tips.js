@@ -1,20 +1,21 @@
 const request = superagent;
 
-//TIPS SECTION
 const tipList = document.querySelector('#tip-list');
 const addTip = document.querySelector('#add-tip-form');
 
 addTip.addEventListener('submit', async(e) => {
   e.preventDefault();
+
   const myForm = new FormData(addTip);
   const tip = myForm.get('add-tip-input');
+
   await request.post('/api/v1/tips')
     .set('Content-Type', 'application/json')
     .send({ tip });
+
   location.reload();
 });
 
-//Fetch and display Quick Tips with the ability to Update and Delete them
 const getTips = async() => {
   const response = await request
     .get('/api/v1/tips');
@@ -57,23 +58,25 @@ getTips()
       displayCase.append(tipContainer, editContainer);
       tipList.append(displayCase);
 
-      //Event listeners to delete and update tips
       deleteButton.addEventListener('click', async() => {
         const tipIdToDelete = oneTip.id;
         const alert = prompt('Type \'DELETE\' and click \'OK\' to continue with deleting this tip.');
+        
         if(alert === 'DELETE'){
           await request.delete(`/api/v1/tips/${tipIdToDelete}`);
+
           location.reload();
         }
       });
     
       editButton.addEventListener('click', async() => {
         const tip = editTip.value;
+
         await request.put(`/api/v1/tips/${oneTip.id}`)
           .set('Content-Type', 'application/json')
           .send({ tip });
+          
         location.reload();
       });
     });
   });
-

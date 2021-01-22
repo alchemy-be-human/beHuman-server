@@ -8,8 +8,8 @@ async function run() {
     await Promise.all(
       tipsData.map(tip => {
         return pool.query(`
-                    INSERT INTO tips (tip)
-                    VALUES ($1)`,
+          INSERT INTO tips (tip)
+          VALUES ($1)`,
         [tip.tip]);
       })
     );

@@ -5,7 +5,7 @@ async function run() {
   try {
     await pool.connect();
     await pool.query(`
-          CREATE TABLE links (
+        CREATE TABLE links (
           id BIGINT GENERATED ALWAYS AS IDENTITY PRIMARY KEY,
           url TEXT NOT NULL 
         );

@@ -18,8 +18,5 @@ CREATE TABLE tips (
   tip TEXT NOT NULL
 );
 
-INSERT INTO users (email, password_hash) VALUES
-('behumannotbot@gmail.com', '$2y$04$F8I5POR7CFJR1HgpKeuvs.jYH6Ge60paGorKoQxvlhzWjoZoZGkBi');
-
-
-
+INSERT INTO users (email, password_hash) 
+VALUES ('behumannotbot@gmail.com', '$2y$04$F8I5POR7CFJR1HgpKeuvs.jYH6Ge60paGorKoQxvlhzWjoZoZGkBi');

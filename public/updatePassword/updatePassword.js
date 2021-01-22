@@ -18,10 +18,10 @@ updateForm.addEventListener('submit', async(e) => {
       .put('/api/v1/auth/updatePassword')
       .withCredentials()
       .send(userPass);
+      
     window.location.href = '/';
       
   } catch{
     errorSpan.textContent = 'Invalid Email';
   }
-
 });

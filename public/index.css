@@ -12,6 +12,16 @@ header {
     margin: 10px;
 }
 
+img {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+header {
+    font-size: larger;
+    margin: 10px;
+}
+
 body {
     background-color: rgb(24, 24, 24);
     color: #9cc4d7;
