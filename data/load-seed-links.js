@@ -8,8 +8,8 @@ async function run() {
     await Promise.all(
       linksData.map(url => {
         return pool.query(`
-                    INSERT INTO links (url)
-                    VALUES ($1)`,
+          INSERT INTO links (url)
+          VALUES ($1)`,
         [url.url]);
       })
     );
