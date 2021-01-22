@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="../index.css">
+    <link rel="stylesheet" href="./admin.css">
+    <title>beHuman: Admin</title>
+</head>
+<body>
+    <img src="../largeVector.png" alt="beHuman Logo" width="200">
+    <header>
+        Admin Page
+    </header>
+
+    <main>    
+        <section id="invite-section">
+            <h3>
+                Invite
+            </h3>
+            <form id="invite-form">
+                <label>
+                    Email: <input type="text" name="email-input">
+                </label>
+                <button>Submit</button>
+            </form>
+        </section>
+
+        <section id="display-section">
+
+            <div class="list-container">
+                <h3>
+                    List of Tips
+                </h3>
+                <form id="add-tip-form">
+                    <label>
+                        <input type="text" name="add-tip-input">
+                    </label>
+                    <button>Add Tip</button>
+                </form>
+                <div id="tip-list"></div>
+            </div>
+
+            <div class="list-container">
+                <h3>
+                    List of Links
+                </h3>
+                <form id="add-link-form">
+                    <label>
+                        <input id="link-input" type="text" name="add-link-input" placeholder="https://url">
+                    </label>
+                    <button>Add Link</button>
+                </form>
+                <div id="link-list"></div>
+            </div>
+        </section>
+    </main>
+    
+    <script src="https://cdn.jsdelivr.net/npm/superagent"></script>
+    <script type="module" src="./invite.js"></script>
+    <script type="module" src="./links.js"></script>
+    <script type="module" src="./tips.js"></script>
+    
+</body>
+</html>

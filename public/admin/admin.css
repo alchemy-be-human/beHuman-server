@@ -1,0 +1,77 @@
+main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+img {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+header {
+    font-size: 30px;
+    margin: 10px;
+}
+
+img {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+header {
+    font-size: 30px;
+    margin: 10px;
+}
+
+section {
+    margin: 20px;
+    padding: 10px;
+    text-align: center;
+}
+
+h3 {
+    margin: 5px;
+}
+
+button {
+    width: 75px;
+    margin: 5px;
+    padding: 5px;
+    border-radius: 25px;
+}
+
+#invite-section {
+    border: solid 2px black;
+    text-align: center;
+    color: rgb(24, 24, 24);
+    background-color: #9cc4d7;
+}
+
+#display-section {
+    display: flex;
+}
+
+.list-container {
+    border: solid 2px black;
+    color: rgb(24, 24, 24);
+    background-color: #9cc4d7;
+    margin: 20px;
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 400px;
+}
+
+.display-case {
+    border: solid 2px black;
+    padding: 10px;
+    margin: 15px;
+}
+
+.container {
+    display: flex;
+    justify-content: space-between;
+    border: solid 1px black;
+    margin: 15px;
+}

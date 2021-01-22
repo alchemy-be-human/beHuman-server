@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./updatePassword.css">
+        <title>beHuman: Update Password</title>
+    </head>
+
+    <body>
+    <img src="../largeVector.png" alt="beHuman Logo" width="200">
+        <header>
+            Update Password
+        </header>
+        
+        <form id="updateForm">
+            <label>
+                Email: <input type="text" name="email-input">
+            </label>
+            <label>
+                New Password: <input type="password" name="new-password-input">
+            </label>
+            <button>Submit</button>
+        </form>
+        
+        <script src="https://cdn.jsdelivr.net/npm/superagent"></script>
+        <script type="module" src="./updatePassword.js"></script>
+
+    </body>
+</html>

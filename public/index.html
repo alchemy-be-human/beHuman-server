@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+    
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="./index.css">
+        <title>beHuman: Login</title>
+    </head>
+
+    <body>
+        <img src="../largeVector.png" alt="beHuman Logo" width="200">
+        <header>
+            Login
+        </header>
+
+        <form>
+            <label>
+                Email: <input type="text" name="username-input">
+            </label>
+            <label>
+                Password: <input type="password" name="password-input">
+            </label>
+            <button>Log In</button>
+        </form>
+        <span id='error-span'></span>
+        
+        <script src="https://cdn.jsdelivr.net/npm/superagent"></script>
+        <script type="module" src="./index.js"></script>
+
+    </body>
+</html>
