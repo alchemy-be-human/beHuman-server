@@ -3,11 +3,24 @@ main {
     flex-direction: column;
     align-items: center;
 }
+img {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+header {
+    font-size: 30px;
+    margin: 10px;
+}
 
 section {
     margin: 20px;
     padding: 10px;
     text-align: center;
+}
+
+h3 {
+    margin: 5px;
 }
 
 button {
@@ -20,6 +33,8 @@ button {
 #invite-section {
     border: solid 2px black;
     text-align: center;
+    color: rgb(24, 24, 24);
+    background-color: #9cc4d7;
 }
 
 #display-section {
@@ -28,10 +43,14 @@ button {
 
 .list-container {
     border: solid 2px black;
+    color: rgb(24, 24, 24);
+    background-color: #9cc4d7;
     margin: 20px;
+    padding: 10px;
     display: flex;
     flex-direction: column;
     align-items: center;
+    max-width: 400px;
 }
 
 .display-case {
